@@ -3,12 +3,15 @@ function ShipFactory(length, coords) {
             coords,
             hit: function(coordinate) {
               const hitCoord = this.coords.indexOf(coordinate);
-              return this.coords[hitCoord] = 'x';
+              this.coords[hitCoord] = 'x';
+              return this.coords;
             },
             isSunk: function() {
-              if ((coords.filter((v => v === 'x').length) === this.length)) {
+              if ((this.coords.filter(coord => coord === 'x').length) === this.length) {
                 return true;
-              } false
+              } return false
             }
     }
 }
+
+export { ShipFactory }

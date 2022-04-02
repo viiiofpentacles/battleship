@@ -1,17 +1,13 @@
 import { ShipFactory } from '../src/ship';
 
-test('returns array with coordinate marked as hit', () => {
-    expect(ShipFactory(5, ['A1','A2','A3','A4','A5']).toMatchObject({
-        length: 5,
-        coords: ['A1','A2','A3','A4','A5'],
-        hit: function(coordinate) {
-            const hitCoord = this.coords.indexOf(coordinate);
-            return this.coords[hitCoord] = 'x';
-          },
-          isSunk: function() {
-            if ((coords.filter((v => v === 'x').length) === this.length)) {
-              return true;
-            } false
-          }
-        }
+test('returns ship length', () => {
+    expect(ShipFactory(5, ['A1','A2','A3','A4','A5']).length).toBe(5);
+      })
+
+test('returns array showing coordinate hit', () => {
+  expect(ShipFactory(5, ['A1','A2','A3','A4','A5']).hit('A5')).toStrictEqual(['A1','A2','A3','A4','x']);
+})
+
+test('checks if ship is sunk', () => {
+  expect(ShipFactory(5, ['A1','A2','A3','A4','A5']).isSunk()).toBe(false);
 })
