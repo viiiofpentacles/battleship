@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleship</title>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <h1>Battleship</h1>
+    <div id="instructions"></div>
+    <div id="boards-container">
+        <div id="user-gameboard">
+            <h3 id="user-title">Your Grid</h3>
+            <div id="user-board">
+                <div class="square"></div>
+                <div class="square coords">1</div>
+                <div class="square coords">2</div>
+                <div class="square coords">3</div>
+                <div class="square coords">4</div>
+                <div class="square coords">5</div>
+                <div class="square coords">6</div>
+                <div class="square coords">7</div>
+                <div class="square coords">8</div>
+                <div class="square coords">9</div>
+                <div class="square coords">10</div>
+
+                <div class="square coords">A</div>
+                <div class="square user A1"></div>
+                <div class="square user A2"></div>
+                <div class="square user A3"></div>
+                <div class="square user A4"></div>
+                <div class="square user A5"></div>
+                <div class="square user A6"></div>
+                <div class="square user A7"></div>
+                <div class="square user A8"></div>
+                <div class="square user A9"></div>
+                <div class="square user A10"></div>
+
+                <div class="square coords">B</div>
+                <div class="square user B1"></div>
+                <div class="square user B2"></div>
+                <div class="square user B3"></div>
+                <div class="square user B4"></div>
+                <div class="square user B5"></div>
+                <div class="square user B6"></div>
+                <div class="square user B7"></div>
+                <div class="square user B8"></div>
+                <div class="square user B9"></div>
+                <div class="square user B10"></div>
+
+                <div class="square coords">C</div>
+                <div class="square user C1"></div>
+                <div class="square user C2"></div>
+                <div class="square user C3"></div>
+                <div class="square user C4"></div>
+                <div class="square user C5"></div>
+                <div class="square user C6"></div>
+                <div class="square user C7"></div>
+                <div class="square user C8"></div>
+                <div class="square user C9"></div>
+                <div class="square user C10"></div>
+
+                <div class="square coords">D</div>
+                <div class="square user D1"></div>
+                <div class="square user D2"></div>
+                <div class="square user D3"></div>
+                <div class="square user D4"></div>
+                <div class="square user D5"></div>
+                <div class="square user D6"></div>
+                <div class="square user D7"></div>
+                <div class="square user D8"></div>
+                <div class="square user D9"></div>
+                <div class="square user D10"></div>
+
+                <div class="square coords">E</div>
+                <div class="square user E1"></div>
+                <div class="square user E2"></div>
+                <div class="square user E3"></div>
+                <div class="square user E4"></div>
+                <div class="square user E5"></div>
+                <div class="square user E6"></div>
+                <div class="square user E7"></div>
+                <div class="square user E8"></div>
+                <div class="square user E9"></div>
+                <div class="square user E10"></div>
+
+                <div class="square coords">F</div>
+                <div class="square user F1"></div>
+                <div class="square user F2"></div>
+                <div class="square user F3"></div>
+                <div class="square user F4"></div>
+                <div class="square user F5"></div>
+                <div class="square user F6"></div>
+                <div class="square user F7"></div>
+                <div class="square user F8"></div>
+                <div class="square user F9"></div>
+                <div class="square user F10"></div>
+
+                <div class="square coords">G</div>
+                <div class="square user G1"></div>
+                <div class="square user G2"></div>
+                <div class="square user G3"></div>
+                <div class="square user G4"></div>
+                <div class="square user G5"></div>
+                <div class="square user G6"></div>
+                <div class="square user G7"></div>
+                <div class="square user G8"></div>
+                <div class="square user G9"></div>
+                <div class="square user G10"></div>
+
+                <div class="square coords">H</div>
+                <div class="square user H1"></div>
+                <div class="square user H2"></div>
+                <div class="square user H3"></div>
+                <div class="square user H4"></div>
+                <div class="square user H5"></div>
+                <div class="square user H6"></div>
+                <div class="square user H7"></div>
+                <div class="square user H8"></div>
+                <div class="square user H9"></div>
+                <div class="square user H10"></div>
+
+                <div class="square coords">I</div>
+                <div class="square user I1"></div>
+                <div class="square user I2"></div>
+                <div class="square user I3"></div>
+                <div class="square user I4"></div>
+                <div class="square user I5"></div>
+                <div class="square user I6"></div>
+                <div class="square user I7"></div>
+                <div class="square user I8"></div>
+                <div class="square user I9"></div>
+                <div class="square user I10"></div>
+
+                <div class="square coords">J</div>
+                <div class="square user J1"></div>
+                <div class="square user J2"></div>
+                <div class="square user J3"></div>
+                <div class="square user J4"></div>
+                <div class="square user J5"></div>
+                <div class="square user J6"></div>
+                <div class="square user J7"></div>
+                <div class="square user J8"></div>
+                <div class="square user J9"></div>
+                <div class="square user J10"></div>
+
+            </div>
+        </div>
+        <div id="computer-gameboard">
+            <h3 id="computer-title">Opponent's Grid</h3>
+            <div id="computer-board">
+                <div class="square"></div>
+                <div class="square coords">1</div>
+                <div class="square coords">2</div>
+                <div class="square coords">3</div>
+                <div class="square coords">4</div>
+                <div class="square coords">5</div>
+                <div class="square coords">6</div>
+                <div class="square coords">7</div>
+                <div class="square coords">8</div>
+                <div class="square coords">9</div>
+                <div class="square coords">10</div>
+
+                <div class="square coords">A</div>
+                <div class="square comp A1"></div>
+                <div class="square comp A2"></div>
+                <div class="square comp A3"></div>
+                <div class="square compr A4"></div>
+                <div class="square comp A5"></div>
+                <div class="square comp A6"></div>
+                <div class="square comp A7"></div>
+                <div class="square comp A8"></div>
+                <div class="square comp A9"></div>
+                <div class="square comp A10"></div>
+
+                <div class="square coords">B</div>
+                <div class="square comp B1"></div>
+                <div class="square comp B2"></div>
+                <div class="square comp B3"></div>
+                <div class="square comp B4"></div>
+                <div class="square comp B5"></div>
+                <div class="square comp B6"></div>
+                <div class="square comp B7"></div>
+                <div class="square comp B8"></div>
+                <div class="square comp B9"></div>
+                <div class="square comp B10"></div>
+
+                <div class="square coords">C</div>
+                <div class="square comp C1"></div>
+                <div class="square comp C2"></div>
+                <div class="square comp C3"></div>
+                <div class="square comp C4"></div>
+                <div class="square comp C5"></div>
+                <div class="square comp C6"></div>
+                <div class="square comp C7"></div>
+                <div class="square comp C8"></div>
+                <div class="square comp C9"></div>
+                <div class="square comp C10"></div>
+
+                <div class="square coords">D</div>
+                <div class="square comp D1"></div>
+                <div class="square comp D2"></div>
+                <div class="square comp D3"></div>
+                <div class="square comp D4"></div>
+                <div class="square comp D5"></div>
+                <div class="square comp D6"></div>
+                <div class="square comp D7"></div>
+                <div class="square comp D8"></div>
+                <div class="square comp D9"></div>
+                <div class="square comp D10"></div>
+
+                <div class="square coords">E</div>
+                <div class="square comp E1"></div>
+                <div class="square comp E2"></div>
+                <div class="square comp E3"></div>
+                <div class="square comp E4"></div>
+                <div class="square comp E5"></div>
+                <div class="square comp E6"></div>
+                <div class="square comp E7"></div>
+                <div class="square comp E8"></div>
+                <div class="square comp E9"></div>
+                <div class="square comp E10"></div>
+
+                <div class="square coords">F</div>
+                <div class="square comp F1"></div>
+                <div class="square comp F2"></div>
+                <div class="square comp F3"></div>
+                <div class="square comp F4"></div>
+                <div class="square comp F5"></div>
+                <div class="square comp F6"></div>
+                <div class="square comp F7"></div>
+                <div class="square comp F8"></div>
+                <div class="square comp F9"></div>
+                <div class="square comp F10"></div>
+
+                <div class="square coords">G</div>
+                <div class="square comp G1"></div>
+                <div class="square comp G2"></div>
+                <div class="square comp G3"></div>
+                <div class="square comp G4"></div>
+                <div class="square comp G5"></div>
+                <div class="square comp G6"></div>
+                <div class="square comp G7"></div>
+                <div class="square comp G8"></div>
+                <div class="square comp G9"></div>
+                <div class="square comp G10"></div>
+
+                <div class="square coords">H</div>
+                <div class="square comp H1"></div>
+                <div class="square comp H2"></div>
+                <div class="square comp H3"></div>
+                <div class="square comp H4"></div>
+                <div class="square comp H5"></div>
+                <div class="square comp H6"></div>
+                <div class="square comp H7"></div>
+                <div class="square comp H8"></div>
+                <div class="square comp H9"></div>
+                <div class="square comp H10"></div>
+
+                <div class="square coords">I</div>
+                <div class="square comp I1"></div>
+                <div class="square comp I2"></div>
+                <div class="square comp I3"></div>
+                <div class="square comp I4"></div>
+                <div class="square comp I5"></div>
+                <div class="square comp I6"></div>
+                <div class="square comp I7"></div>
+                <div class="square comp I8"></div>
+                <div class="square comp I9"></div>
+                <div class="square comp I10"></div>
+
+                <div class="square coords">J</div>
+                <div class="square comp J1"></div>
+                <div class="square comp J2"></div>
+                <div class="square comp J3"></div>
+                <div class="square comp J4"></div>
+                <div class="square comp J5"></div>
+                <div class="square comp J6"></div>
+                <div class="square comp J7"></div>
+                <div class="square comp J8"></div>
+                <div class="square comp J9"></div>
+                <div class="square comp J10"></div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
