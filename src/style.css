@@ -1,0 +1,72 @@
+:root {
+    --grid-color: rgb(141, 140, 140);
+    --text-color: rgb(110, 109, 109);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: rgb(228, 228, 253);
+}
+
+h1,
+h3 {
+    padding: 1rem;
+    color: var(--text-color);
+}
+
+h1,
+#instructions {
+    text-align: center;
+}
+
+button {
+    margin: 2rem;
+    margin-left: 3rem;
+    padding: 0.5rem 1rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.square {
+    border: 1px solid var(--grid-color);
+    height: 2rem;
+    width: 2rem;
+    text-align: center;
+}
+
+.coords {
+    font-weight: 600;
+    color: var(--grid-color);
+}
+
+#instructions {
+    height: 1.5rem;
+}
+
+#board-n-menu {
+    display: flex;
+}
+
+#user-gameboard,
+#computer-gameboard {
+    margin: 2.5%;
+    width: 45%;
+}
+
+#boards-container {
+    display: flex;
+}
+
+#user-board,
+#computer-board {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+    width: 23rem;
+}

@@ -2,7 +2,7 @@ function Player() {
   return {
       chosenCoords: [],
       attack: function() {
-          let attackCoords = generateCoords();
+          let attackCoords = generateAttackCoords();
           if (this.chosenCoords.indexOf(attackCoords) !== -1) {
               this.chosenCoords.push(attackCoords);
               return attackCoords;
@@ -13,7 +13,7 @@ function Player() {
     }
 }
 
-function generateCoords () {
+function generateAttackCoords () {
     const latitude = 'ABCDEFGHIJ';
     const longitude = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
     const randomLat = latitude.charAt(Math.floor(Math.random() * latitude.length));
