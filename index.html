@@ -9,10 +9,11 @@
 </head>
 <body>
     <h1>Battleship</h1>
-    <div id="instructions"></div>
+    <div id="instructions"> Place ships on your grid by clicking the reset button. Once you are ready, click 'Begin!'</div>
     <div id="boards-container">
         <div id="user-gameboard">
             <h3 id="user-title">Your Grid</h3>
+            <div id="board-n-menu">
             <div id="user-board">
                 <div class="square"></div>
                 <div class="square coords">1</div>
@@ -145,8 +146,11 @@
                 <div class="square user J8"></div>
                 <div class="square user J9"></div>
                 <div class="square user J10"></div>
-
             </div>
+            <div id="menu-buttons">
+                <button id="reset-button">Reset</button>
+            </div>
+        </div>
         </div>
         <div id="computer-gameboard">
             <h3 id="computer-title">Opponent's Grid</h3>
@@ -167,7 +171,7 @@
                 <div class="square comp A1"></div>
                 <div class="square comp A2"></div>
                 <div class="square comp A3"></div>
-                <div class="square compr A4"></div>
+                <div class="square comp A4"></div>
                 <div class="square comp A5"></div>
                 <div class="square comp A6"></div>
                 <div class="square comp A7"></div>
