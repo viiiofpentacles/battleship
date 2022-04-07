@@ -1,4 +1,5 @@
-import { ShipFactory } from './ship.js'
+import { ShipFactory } from './ship.js';
+import { generateAllShipCoords } from './shipplacement.js';;
 
 function Gameboard() {
   return {
@@ -30,4 +31,13 @@ function Gameboard() {
     }
 }
 
-export { Gameboard }
+function shipSetup (gameboard) {
+  let shipCoords = generateAllShipCoords();
+  let shipSizes = [5, 4 ,3, 3, 2];
+  for (let i = 0; i < 5; i++) {
+      gameboard.placeShip(shipSizes[i], shipCoords[i]);
+  }
+  return shipCoords;
+};
+
+export { Gameboard, shipSetup }

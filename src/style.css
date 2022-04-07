@@ -29,10 +29,6 @@ button {
     padding: 0.5rem 1rem;
 }
 
-button:hover {
-    cursor: pointer;
-}
-
 .square {
     border: 1px solid var(--grid-color);
     height: 2rem;

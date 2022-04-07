@@ -1,13 +1,4 @@
-import { generateAllShipCoords } from './shipplacement.js';
-
-function shipSetup (gameboard) {
-    let shipCoords = generateAllShipCoords();
-    let shipSizes = [5, 4 ,3, 3, 2];
-    for (let i = 0; i < 5; i++) {
-        gameboard.placeShip(shipSizes[i], shipCoords[i]);
-    }
-    return shipCoords;
-};
+import { shipSetup } from './gameboard.js';
 
 function updateUserShipDisplay (coords) {
       for (let i = 0; i < coords.length; i++) {
@@ -27,8 +18,8 @@ function resetButton (gameboard) {
     })
     gameboard.ships = [];
     const shipCoords = shipSetup(gameboard);
+    console.log(shipCoords);
     updateUserShipDisplay(shipCoords);
-    console.log(gameboard.ships)
 })
 };
 
@@ -41,5 +32,5 @@ function updateAttackDisplay(gameboard) {
 function attackLoop () {
 };
 
-export { shipSetup, updateUserShipDisplay, resetButton }
+export { updateUserShipDisplay, resetButton }
 
