@@ -43,17 +43,63 @@ function generateShipCoordsVertical (shipLength) {
     return coordinates;
 }
 
+function coinToss () {
+    return Math.floor(Math.random() * 2);
+}
+
 function generateAllShipCoords () {
     const shipsLengths = [5, 4, 3, 3, 2];
     let allCoords = [];
-    for (let i = 0; i < 5; i++ ) {
-        let coinToss =  Math.floor(Math.random() * 2);
-          if (coinToss === 0) {
-              allCoords.push(generateShipCoordsHorizontal(shipsLengths[i]));
-          } else {
-              allCoords.push(generateShipCoordsVertical(shipsLengths[i]));
-          }
+    let firstCoinToss = coinToss();
+    if (firstCoinToss === 0) {
+        allCoords.push(generateShipCoordsHorizontal(shipsLengths[0]));
+    } else {
+        allCoords.push(generateShipCoordsVertical(shipsLengths[0]));
+    };
+    for (let i = 1; i < 5; i++ ) {
+        let subsequentCoinToss =  coinToss();
+        let newShip;
+          if (subsequentCoinToss === 0) {
+            let clash = true;
+            while (clash === true) {
+                newShip = generateShipCoordsHorizontal(shipsLengths[i]);
+                loopA: for (let i = 0; i < newShip.length; i++) {
+                    for (let a = 0; a < allCoords.length; a++) {
+                        for (let i = 0; i < allCoords[a].length; i++) {
+                            if (allCoords[a].indexOf(newShip[i]) !== -1) {
+                                clash = true;
+                                break loopA;
+                            } else {
+                                clash = false;   
+                            }
+                        }
+                    }
+                }
+                allCoords.push(newShip);
+                clash = false;
+            }
+        } else {
+            let newShip;
+            let clash = true;
+            while (clash === true) {
+                newShip = generateShipCoordsVertical(shipsLengths[i]);
+                loopA: for (let i = 0; i < newShip.length; i++) {
+                    for (let a = 0; a < allCoords.length; a++) {
+                        for (let i =0; i < allCoords[a].length; i++) {
+                            if (allCoords[a].indexOf(newShip[i]) !== -1) {
+                                clash = true;
+                                break loopA;
+                            } else {
+                                clash = false;
+                            }
+                        }
+                    }
+                }
+            } 
+            allCoords.push(newShip);
+            clash = false;
         }
+    }
           return allCoords;
 }
 
