@@ -66,3 +66,7 @@ button {
     grid-template-rows: repeat(11, 1fr);
     width: 23rem;
 }
+
+.noclick {
+    pointer-events: none;
+}

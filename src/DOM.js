@@ -46,7 +46,7 @@ function attackLoop (coord, player, gameboard, computerPlayer, playerBoard) {
     if (attackOutcome == 'x') {
         square[0].textContent ='❌';
         square[0].style.backgroundColor = '#000067';
-        square[0].removeEventListener('click', attackLoop);
+        square[0].classList.add('noclick');
         let checkGameOver = gameboard.checkGameOver();
         if (checkGameOver == true) {
             gameOver(player);
@@ -57,7 +57,7 @@ function attackLoop (coord, player, gameboard, computerPlayer, playerBoard) {
         document.getElementById('instructions').textContent = 'Miss!';
         square[0].textContent ='●';
         square[0].style.backgroundColor = '#a6a6a6';
-        square[0].removeEventListener('click', attackLoop);
+        square[0].classList.add('noclick');
         computerTurn(computerPlayer, playerBoard);
     }
 };

@@ -25,14 +25,18 @@ function Gameboard() {
           }
       },
       checkGameOver: function() {
-        for (let i in this.ships) {
-          if(this.ships[i].coords.every(coord => coord === 'x') === true) {
+        let checkArray = [];
+        for (let i = 0; i < this.ships.length; i++) {
+          for (let a = 0; a < this.ships[i].coords.length; a++){
+          checkArray.push(this.ships[i].coords[a]); 
+          }
+        };
+        if(checkArray.every(coord => coord === 'x') === true) {
             return true;
           } else {
             return false;
           }
         }
-      }
     }
 }
 
