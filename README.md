@@ -1,6 +1,6 @@
 # Introduction
 
-- A project meant to practice Test-drven development.  
+- A project meant to practice Test-driven development.  
 - Based on the classic battleship game, where players can play against the computer.  
 
 ## Features
