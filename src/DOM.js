@@ -63,15 +63,19 @@ function computerTurn (computerPlayer, userGameboard, computerBoard) {
     setTimeout(function() {
     updateAttackDisplay(attackOutcome, coord, 'user');
     checkGameOverMessage(userGameboard, computerBoard);
-    }, 1000);
-    while (attackOutcome === 'x') {
-        checkGameOverMessage(userGameboard, computerBoard);
+    }, 500);
+    let nextAttack = false;
+    if(attackOutcome === 'x') {
+        nextAttack = true;
+    }
+    while (nextAttack === true) {
         coord = computerPlayer.attack();
         attackOutcome = userGameboard.receiveAttack(coord);
         updateAttackDisplay(attackOutcome, coord, 'user');
         checkGameOverMessage(userGameboard, computerBoard);
         if (attackOutcome !== 'x') {
-            document.getElementById('instructions').textContent = 'Your turn!';
+            updateAttackDisplay(attackOutcome, coord, 'user');
+            nextAttack = false;
             break;
         }
     }
@@ -84,7 +88,6 @@ function updateAttackDisplay(attackOutcome, coords, user) {
         square[0].style.backgroundColor = '#000067';
         square[0].classList.add('noclick');
     } else {
-        document.getElementById('instructions').textContent = 'Miss!';
         square[0].textContent = '●';
         square[0].style.backgroundColor = '#a6a6a6';
         square[0].classList.add('noclick');
@@ -101,7 +104,7 @@ function checkGameOverMessage(playerBoard, computerBoard) {
             });
         if (playerResult === true) {
             document.getElementById('instructions').textContent = 'Game Over! You lose! Refresh the page to play again.';
-        } else {
+        } else if (computerResult === true) {
             document.getElementById('instructions').textContent = 'Game Over! You win! Refresh the page to play again.';
     } 
     } else {
