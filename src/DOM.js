@@ -60,10 +60,8 @@ function computerTurn (computerPlayer, userGameboard, computerBoard) {
     document.getElementById('instructions').textContent = 'Opponent\'s turn...';
     let coord = computerPlayer.attack();
     let attackOutcome = userGameboard.receiveAttack(coord);
-    setTimeout(function() {
     updateAttackDisplay(attackOutcome, coord, 'user');
     checkGameOverMessage(userGameboard, computerBoard);
-    }, 500);
     let nextAttack = false;
     if(attackOutcome === 'x') {
         nextAttack = true;
