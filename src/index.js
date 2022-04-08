@@ -11,6 +11,5 @@ const computerBoard = Gameboard();
 const userShipCoords = shipSetup(userBoard);
 updateUserShipDisplay(userShipCoords);
 shipSetup(computerBoard);
-console.log(computerBoard.ships);
 resetButton(userBoard);
 startGameButton(userPlayer,computerBoard, computerPlayer, userBoard);

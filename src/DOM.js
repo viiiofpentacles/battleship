@@ -39,49 +39,67 @@ function startGameButton (player, gameboard, computerPlayer, playerBoard) {
     });
 };
 
-function attackLoop (coord, player, gameboard, computerPlayer, playerBoard) {
-    player.attack(coord);
-    let attackOutcome = gameboard.receiveAttack(coord);
+function attackLoop (coord, player, computerBoard, computerPlayer, playerBoard) {
+    let attackOutcome = computerBoard.receiveAttack(coord);
     let square = document.getElementsByClassName(`square comp ${coord}`);
     if (attackOutcome == 'x') {
         square[0].textContent ='❌';
         square[0].style.backgroundColor = '#000067';
         square[0].classList.add('noclick');
-        let checkGameOver = gameboard.checkGameOver();
-        if (checkGameOver == true) {
-            gameOver(player);
-        } else {
-            document.getElementById('instructions').textContent = 'Score! You get another turn.';
-        }
+        checkGameOverMessage(playerBoard, computerBoard);
     } else {
         document.getElementById('instructions').textContent = 'Miss!';
         square[0].textContent ='●';
         square[0].style.backgroundColor = '#a6a6a6';
         square[0].classList.add('noclick');
-        computerTurn(computerPlayer, playerBoard);
+        computerTurn(computerPlayer, playerBoard, computerBoard);
     }
 };
 
-function computerTurn (player, gameboard) {
-    let coords = player.attack();
-    let attackOutcome = gameboard.receiveAttack(coords);
-    updateAttackDisplay(gameboard);
-    while (attackOutcome === 'x') {
-        coords = player.attack();
-        attackOutcome = gameboard.receiveAttack(coords);
+function computerTurn (computerPlayer, userGameboard, computerBoard) {
+    let coord = computerPlayer.attack();
+    let attackOutcome = userGameboard.receiveAttack(coord);
+    updateAttackDisplay(attackOutcome, coord, 'user');
+    checkGameOverMessage(userGameboard, computerBoard);
+    while (attackOutcome === 'x') { 
+        checkGameOverMessage(userGameboard, computerBoard);
+        coord = computerPlayer.attack();
+        attackOutcome = userGameboard.receiveAttack(coord);
+        updateAttackDisplay(attackOutcome, coord, 'user');
+        checkGameOverMessage(userGameboard, computerBoard);
         if (attackOutcome !== 'x') {
             break;
         }
     }
 }
 
-function updateAttackDisplay(gameboard) {
-    //accesses gameboard's ships and miss to display results. bgcolor THEN textcontent
+function updateAttackDisplay(attackOutcome, coords, user) {
+    let square = document.getElementsByClassName(`square ${user} ${coords}`);
+    if (attackOutcome == 'x') {
+        square[0].textContent = '❌';
+        square[0].style.backgroundColor = '#000067';
+        square[0].classList.add('noclick');
+    } else {
+        document.getElementById('instructions').textContent = 'Miss!';
+        square[0].textContent = '●';
+        square[0].style.backgroundColor = '#a6a6a6';
+        square[0].classList.add('noclick');
+    }
 }
 
-function gameOver(player) {
-    document.getElementById('instructions').textContent = 'Game Over! You win! Refresh the page to play again.'
-    //add fn to disable clicking
+function checkGameOverMessage(playerBoard, computerBoard) {
+    let playerResult = playerBoard.checkGameOver();
+    let computerResult = computerBoard.checkGameOver();
+    if (playerResult === true || computerResult === true) {
+        //add fn to disable clicking
+        if (playerResult === true) {
+            document.getElementById('instructions').textContent = 'Game Over! You lose! Refresh the page to play again.';
+        } else {
+            document.getElementById('instructions').textContent = 'Game Over! You win! Refresh the page to play again.';
+    } 
+    } else {
+        document.getElementById('instructions').textContent = 'Score! You get another turn.';
+    }
 }
 
 export { updateUserShipDisplay, resetButton, startGameButton }
