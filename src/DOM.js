@@ -57,10 +57,20 @@ function attackLoop (coord, player, computerBoard, computerPlayer, playerBoard) 
 };
 
 function computerTurn (computerPlayer, userGameboard, computerBoard) {
+    document.getElementById('instructions').textContent = 'Opponent\'s turn...';
+    let compSquares = document.querySelectorAll('.comp');
+    compSquares.forEach(square => {
+        square.classList.add('noclickOpp');
+    });
     let coord = computerPlayer.attack();
     let attackOutcome = userGameboard.receiveAttack(coord);
+    setTimeout(function() {
     updateAttackDisplay(attackOutcome, coord, 'user');
     checkGameOverMessage(userGameboard, computerBoard);
+    compSquares.forEach(square => {
+        square.classList.remove('noclickOpp');
+    });
+    }, 1000);
     while (attackOutcome === 'x') { 
         checkGameOverMessage(userGameboard, computerBoard);
         coord = computerPlayer.attack();
@@ -68,6 +78,7 @@ function computerTurn (computerPlayer, userGameboard, computerBoard) {
         updateAttackDisplay(attackOutcome, coord, 'user');
         checkGameOverMessage(userGameboard, computerBoard);
         if (attackOutcome !== 'x') {
+            document.getElementById('instructions').textContent = 'Your turn!';
             break;
         }
     }
@@ -91,14 +102,17 @@ function checkGameOverMessage(playerBoard, computerBoard) {
     let playerResult = playerBoard.checkGameOver();
     let computerResult = computerBoard.checkGameOver();
     if (playerResult === true || computerResult === true) {
-        //add fn to disable clicking
+        let compSquares = document.querySelectorAll('.comp');
+        compSquares.forEach(square => {
+            square.classList.add('noclick');
+            });
         if (playerResult === true) {
             document.getElementById('instructions').textContent = 'Game Over! You lose! Refresh the page to play again.';
         } else {
             document.getElementById('instructions').textContent = 'Game Over! You win! Refresh the page to play again.';
     } 
     } else {
-        document.getElementById('instructions').textContent = 'Score! You get another turn.';
+        document.getElementById('instructions').textContent = 'You get another turn.';
     }
 }
 

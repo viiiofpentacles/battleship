@@ -70,3 +70,7 @@ button {
 .noclick {
     pointer-events: none;
 }
+
+.noclickOpp {
+    pointer-events: none;
+}
