@@ -2,16 +2,18 @@ function Player() {
   return {
       chosenCoords: [],
       attack: function() {
-          let attackCoords = generateAttackCoords();
-          if (this.chosenCoords.indexOf(attackCoords) !== -1) {
-              this.chosenCoords.push(attackCoords);
-              return attackCoords;
-          } else {
-              this.attack();
+           let attackCoords = generateAttackCoords();
+           while (this.chosenCoords.indexOf(attackCoords) !== (-1)) {
+               attackCoords = generateAttackCoords();  
+               if (this.chosenCoords.indexOf(attackCoords) == (-1)) {
+                   this.chosenCoords.push(attackCoords);
+                   break;
+               }
+            }
+            return attackCoords;
           }
       }
     }
-}
 
 function generateAttackCoords () {
     const latitude = 'ABCDEFGHIJ';
