@@ -22,7 +22,7 @@ function resetButton (gameboard) {
 })
 };
 
-function startGameButton (player, gameboard, computerPlayer, playerBoard) {
+function startGameButton (gameboard, computerPlayer, playerBoard) {
     const beginButton = document.getElementById('begin-button');
     beginButton.addEventListener('click', () => {
         document.getElementById('instructions').textContent = 'Your turn! Click on a square on the opponent\'s grid to begin.';
@@ -32,14 +32,14 @@ function startGameButton (player, gameboard, computerPlayer, playerBoard) {
         compSquares.forEach(square => {
             const coord = square.className.split(' ')[2];
             square.addEventListener('click', () => {
-                attackLoop(coord, player, gameboard, computerPlayer, playerBoard)
+                attackLoop(coord, gameboard, computerPlayer, playerBoard)
             });
         });
         beginButton.disabled = true;
     });
 };
 
-function attackLoop (coord, player, computerBoard, computerPlayer, playerBoard) {
+function attackLoop (coord, computerBoard, computerPlayer, playerBoard) {
     let attackOutcome = computerBoard.receiveAttack(coord);
     let square = document.getElementsByClassName(`square comp ${coord}`);
     if (attackOutcome == 'x') {
@@ -58,20 +58,13 @@ function attackLoop (coord, player, computerBoard, computerPlayer, playerBoard) 
 
 function computerTurn (computerPlayer, userGameboard, computerBoard) {
     document.getElementById('instructions').textContent = 'Opponent\'s turn...';
-    let compSquares = document.querySelectorAll('.comp');
-    compSquares.forEach(square => {
-        square.classList.add('noclickOpp');
-    });
     let coord = computerPlayer.attack();
     let attackOutcome = userGameboard.receiveAttack(coord);
     setTimeout(function() {
     updateAttackDisplay(attackOutcome, coord, 'user');
     checkGameOverMessage(userGameboard, computerBoard);
-    compSquares.forEach(square => {
-        square.classList.remove('noclickOpp');
-    });
     }, 1000);
-    while (attackOutcome === 'x') { 
+    while (attackOutcome === 'x') {
         checkGameOverMessage(userGameboard, computerBoard);
         coord = computerPlayer.attack();
         attackOutcome = userGameboard.receiveAttack(coord);

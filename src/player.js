@@ -2,12 +2,14 @@ function Player() {
   return {
       chosenCoords: [],
       attack: function() {
-           let attackCoords = generateAttackCoords();
-           while (this.chosenCoords.indexOf(attackCoords) !== (-1)) {
-               attackCoords = generateAttackCoords();  
-               if (this.chosenCoords.indexOf(attackCoords) == (-1)) {
-                   this.chosenCoords.push(attackCoords);
-                   break;
+           let attackCoords;
+           let clash = true
+           while (clash === true) {
+            attackCoords = generateAttackCoords(); 
+            if (this.chosenCoords.indexOf(attackCoords) === (-1)) {
+                this.chosenCoords.push(attackCoords);
+                clash = false;
+                break;
                }
             }
             return attackCoords;

@@ -12,4 +12,4 @@ const userShipCoords = shipSetup(userBoard);
 updateUserShipDisplay(userShipCoords);
 shipSetup(computerBoard);
 resetButton(userBoard);
-startGameButton(userPlayer,computerBoard, computerPlayer, userBoard);
+startGameButton(computerBoard, computerPlayer, userBoard);
